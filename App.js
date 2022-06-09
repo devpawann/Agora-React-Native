@@ -1,12 +1,14 @@
 import React, {useState} from 'react';
-import {Text} from 'react-native';
+import {Button} from 'react-native';
 import AgoraUIKit from 'agora-rn-uikit';
+import {APPID, TOKEN} from './secret';
 
 export default function App() {
-  const [videoCall, setVideoCall] = useState(true);
+  const [videoCall, setVideoCall] = useState(false);
   const connectionData = {
-    appId: '<Agora App ID>',
+    appId: APPID,
     channel: 'test',
+    token: TOKEN,
   };
   const rtcCallbacks = {
     EndCall: () => setVideoCall(false),
@@ -14,6 +16,10 @@ export default function App() {
   return videoCall ? (
     <AgoraUIKit connectionData={connectionData} rtcCallbacks={rtcCallbacks} />
   ) : (
-    <Text onPress={() => setVideoCall(true)}>Start Call</Text>
+    <Button
+      onPress={() => setVideoCall(true)}
+      title={'Start Call'}
+      callbacks={rtcCallbacks}
+    />
   );
 }
