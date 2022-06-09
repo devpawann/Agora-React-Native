@@ -22,5 +22,11 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <service android:exported="true" android:foregroundServiceType="mediaProjection"
+                 android:name="io.agora.rtc.ss.impl.LocalScreenSharingService">
+            <intent-filter>
+                <action android:name="android.intent.action.screenshare"/>
+            </intent-filter>
+        </service>
     </application>
 </manifest>
